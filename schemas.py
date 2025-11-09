@@ -41,8 +41,10 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class SiteStat(BaseModel):
+    """
+    Site statistics for BeeQuest
+    Collection name: "sitestat"
+    """
+    name: str = Field(..., description="Site key, e.g., 'beequest'")
+    total_visits: int = Field(0, ge=0, description="Total number of visits")

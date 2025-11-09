@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, HttpUrl
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -34,6 +34,18 @@ class ContactsResponse(BaseModel):
     whatsapp: Optional[str] = None
     email: Optional[str] = None
     x: Optional[str] = None
+
+class ContentSection(BaseModel):
+    title: Optional[str] = None
+    subtitle: Optional[str] = None
+    points: Optional[List[str]] = []
+
+class ContentResponse(BaseModel):
+    source: str
+    title: Optional[str] = None
+    description: Optional[str] = None
+    highlights: List[Dict[str, Optional[str]]] = []
+    sections: List[ContentSection] = []
 
 @app.get("/")
 def read_root():
@@ -94,6 +106,80 @@ def import_contacts(payload: ImportRequest):
         "email": email,
         "x": xlink,
     }
+
+@app.post("/api/import-content", response_model=ContentResponse)
+def import_content(payload: ImportRequest):
+    """Fetch a webpage and extract structured textual content suitable for premium templates."""
+    try:
+        resp = requests.get(str(payload.url), timeout=12)
+        resp.raise_for_status()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to fetch URL: {e}")
+
+    soup = BeautifulSoup(resp.text, 'html.parser')
+
+    # Title & description
+    title = None
+    if soup.title and soup.title.string:
+        title = soup.title.string.strip()
+    desc_tag = soup.find('meta', attrs={'name': 'description'}) or soup.find('meta', attrs={'property': 'og:description'})
+    description = desc_tag['content'].strip() if (desc_tag and desc_tag.get('content')) else None
+
+    # Collect headings and paragraphs
+    blocks: List[Dict[str, str]] = []
+    for tag in soup.find_all(['h1', 'h2', 'h3', 'p', 'li']):
+        text = tag.get_text(separator=' ', strip=True)
+        if not text:
+            continue
+        blocks.append({'tag': tag.name.lower(), 'text': text})
+
+    # Build highlights: top few strong lines from h1/p near start
+    highlights: List[Dict[str, Optional[str]]] = []
+    for b in blocks[:40]:
+        if b['tag'] in ('h1', 'h2'):
+            highlights.append({'title': b['text'], 'text': None})
+        elif b['tag'] == 'p' and len(b['text'].split()) > 6:
+            highlights.append({'title': b['text'][:120] + ('…' if len(b['text']) > 120 else ''), 'text': None})
+        if len(highlights) >= 6:
+            break
+
+    # Build sections grouped by h2/h3 with following content
+    sections: List[ContentSection] = []
+    current: Optional[ContentSection] = None
+    for b in blocks:
+        tag, text = b['tag'], b['text']
+        if tag in ('h2', 'h3'):
+            if current and (current.title or current.subtitle or current.points):
+                sections.append(current)
+            current = ContentSection(title=text, subtitle=None, points=[])
+        elif tag == 'p':
+            if current is None:
+                current = ContentSection(title=text, points=[])
+            else:
+                if current.subtitle is None and len(text.split()) > 4 and (not current.points):
+                    current.subtitle = text
+                else:
+                    (current.points or []).append(text)
+        elif tag == 'li':
+            if current is None:
+                current = ContentSection(title='Highlights', points=[text])
+            else:
+                (current.points or []).append(text)
+    if current and (current.title or current.subtitle or current.points):
+        sections.append(current)
+
+    # Limit sizes
+    for s in sections:
+        if s.points:
+            s.points = s.points[:8]
+
+    return ContentResponse(
+        source=str(payload.url),
+        title=title,
+        description=description,
+        highlights=highlights,
+        sections=sections[:10]
+    )
 
 @app.get("/test")
 def test_database():

@@ -1,8 +1,11 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Dict
+from pydantic import BaseModel, HttpUrl
+from typing import Dict, Optional
+import re
+import requests
+from bs4 import BeautifulSoup
 
 from database import db
 
@@ -22,6 +25,15 @@ COLLECTION = "sitestat"
 class StatResponse(BaseModel):
     name: str
     total_visits: int
+
+class ImportRequest(BaseModel):
+    url: HttpUrl
+
+class ContactsResponse(BaseModel):
+    instagram: Optional[str] = None
+    whatsapp: Optional[str] = None
+    email: Optional[str] = None
+    x: Optional[str] = None
 
 @app.get("/")
 def read_root():
@@ -50,11 +62,38 @@ def add_visit():
         upsert=True,
         return_document=True
     )
-    # When upserting, PyMongo may return None depending on driver; fetch again
     if not res:
         res = db[COLLECTION].find_one({"name": SITE_KEY})
     total = int(res.get("total_visits", 0)) if res else 0
     return {"name": SITE_KEY, "total_visits": total}
+
+@app.post("/api/import-contacts", response_model=ContactsResponse)
+def import_contacts(payload: ImportRequest):
+    """Fetch a webpage and extract common contact links: Instagram, WhatsApp, Email, X/Twitter."""
+    try:
+        resp = requests.get(str(payload.url), timeout=10)
+        resp.raise_for_status()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to fetch URL: {e}")
+
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    links = [a.get('href') for a in soup.find_all('a') if a.get('href')]
+
+    instagram = next((l for l in links if re.search(r"instagram\.com/", l, re.I)), None)
+    whatsapp = next((l for l in links if re.search(r"wa\.me/|api\.whatsapp\.com/|whatsapp\.com/send", l, re.I)), None)
+    email = next((l for l in links if l.lower().startswith('mailto:')), None)
+    xlink = next((l for l in links if re.search(r"twitter\.com/|x\.com/", l, re.I)), None)
+
+    # Normalize email to address only
+    if email and email.lower().startswith('mailto:'):
+        email = email.split(':', 1)[1].split('?')[0]
+
+    return {
+        "instagram": instagram,
+        "whatsapp": whatsapp,
+        "email": email,
+        "x": xlink,
+    }
 
 @app.get("/test")
 def test_database():
@@ -69,7 +108,6 @@ def test_database():
     }
     
     try:
-        # Try to import database module
         from database import db as _db
         
         if _db is not None:
@@ -78,10 +116,9 @@ def test_database():
             response["database_name"] = _db.name if hasattr(_db, 'name') else "✅ Connected"
             response["connection_status"] = "Connected"
             
-            # Try to list collections to verify connectivity
             try:
                 collections = _db.list_collection_names()
-                response["collections"] = collections[:10]  # Show first 10 collections
+                response["collections"] = collections[:10]
                 response["database"] = "✅ Connected & Working"
             except Exception as e:
                 response["database"] = f"⚠️  Connected but Error: {str(e)[:50]}"
@@ -93,7 +130,6 @@ def test_database():
     except Exception as e:
         response["database"] = f"❌ Error: {str(e)[:50]}"
     
-    # Check environment variables
     import os as _os
     response["database_url"] = "✅ Set" if _os.getenv("DATABASE_URL") else "❌ Not Set"
     response["database_name"] = "✅ Set" if _os.getenv("DATABASE_NAME") else "❌ Not Set"

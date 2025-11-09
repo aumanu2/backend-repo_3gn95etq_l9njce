@@ -1,19 +1,17 @@
 INFO:     Will watch for changes in these directories: ['/home/workspace']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [347] using StatReload
+INFO:     Started reloader process [427] using StatReload
 /home/workspace/database.py:25: UserWarning: You appear to be connected to a CosmosDB cluster. For more information regarding feature compatibility and support please visit https://www.mongodb.com/supportability/cosmosdb
   _client = MongoClient(database_url)
-INFO:     Started server process [349]
+INFO:     Started server process [429]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     172.20.0.1:44306 - "HEAD / HTTP/1.1" 405 Method Not Allowed
-INFO:     172.20.0.1:44310 - "OPTIONS /api/import-contacts HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44314 - "OPTIONS /api/visit HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44318 - "OPTIONS /api/visit HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "OPTIONS /api/import-contacts HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44314 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
-INFO:     172.20.0.1:44324 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
-INFO:     172.20.0.1:44318 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
+INFO:     172.20.0.1:54554 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:54570 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:54580 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:54560 - "GET /test HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54580 - "GET /test HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54560 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
 ERROR:    Exception in ASGI application
 Traceback (most recent call last):
   File "/usr/local/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 406, in run_asgi
@@ -169,7 +167,180 @@ Traceback (most recent call last):
     ^
   File "/usr/local/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 247, in _check_command_response
     raise OperationFailure(errmsg, code, response, max_wire_version)
-pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 8c4e237c-7ea9-44dc-b9c5-42bec250cd72; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: 8c4e237c-7ea9-44dc-b9c5-42bec250cd72, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
+pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: d6bf7411-98d0-4e72-92d0-b06998ab82a6; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: d6bf7411-98d0-4e72-92d0-b06998ab82a6, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
+RequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;
+RequestMethod: POST;
+Header: Authorization Length: 86;
+Header: x-ms-date Length: 29;
+Header: x-ms-cosmos-sdk-supportedcapabilities Length: 1;
+Header: x-ms-activity-id Length: 36;
+Header: Cache-Control Length: 8;
+Header: User-Agent Length: 145;
+Header: x-ms-cosmos-apitype Length: 7;
+Header: x-ms-version Length: 10;
+Header: Accept Length: 16;
+Header: x-ms-cosmos-compute-hop-count Length: 1;
+Header: x-ms-gateway-use-mtls Length: 1;
+Header: traceparent Length: 55;
+Header: tracestate Length: 6;
+, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: d6bf7411-98d0-4e72-92d0-b06998ab82a6; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: d6bf7411-98d0-4e72-92d0-b06998ab82a6, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 86;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
+INFO:     172.20.0.1:54580 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 406, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/anyio/to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, *args, cancellable=cancellable, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+  File "/home/workspace/main.py", line 47, in add_visit
+    res = db[COLLECTION].find_one_and_update(
+        {"name": SITE_KEY},
+    ...<2 lines>...
+        return_document=True
+    )
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3566, in find_one_and_update
+    return self._find_and_modify(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        filter,
+        ^^^^^^^
+    ...<8 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3227, in _find_and_modify
+    return self._database.client._retryable_write(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        write_concern.acknowledged,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        operation=_Op.FIND_AND_MODIFY,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1898, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1784, in _retry_with_session
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func=func,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1830, in _retry_internal
+    ).run()
+      ~~~^^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2554, in run
+    return self._read() if self._is_read else self._write()
+                                              ~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2676, in _write
+    return self._func(self._session, conn, self._retryable)  # type: ignore
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3213, in _find_and_modify_helper
+    out = self._command(
+        conn,
+    ...<6 lines>...
+        user_fields=_FIND_AND_MODIFY_DOC_FIELDS,
+    )
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 621, in _command
+    return conn.command(
+           ~~~~~~~~~~~~^
+        self._database.name,
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        user_fields=user_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 45, in inner
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 538, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 218, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 247, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: f57f1b2a-2c86-42de-8561-b070f409dcd2; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: f57f1b2a-2c86-42de-8561-b070f409dcd2, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
 RequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;
 RequestMethod: POST;
 Header: Authorization Length: 84;
@@ -185,8 +356,20 @@ Header: x-ms-cosmos-compute-hop-count Length: 1;
 Header: x-ms-gateway-use-mtls Length: 1;
 Header: traceparent Length: 55;
 Header: tracestate Length: 6;
-, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 8c4e237c-7ea9-44dc-b9c5-42bec250cd72; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: 8c4e237c-7ea9-44dc-b9c5-42bec250cd72, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 84;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
-INFO:     172.20.0.1:44310 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
+, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: f57f1b2a-2c86-42de-8561-b070f409dcd2; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: f57f1b2a-2c86-42de-8561-b070f409dcd2, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 84;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:54584 - "GET /test HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:54584 - "GET /test HTTP/1.1" 200 OK
+INFO:     172.20.0.1:54570 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
 ERROR:    Exception in ASGI application
 Traceback (most recent call last):
   File "/usr/local/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 406, in run_asgi
@@ -342,188 +525,7 @@ Traceback (most recent call last):
     ^
   File "/usr/local/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 247, in _check_command_response
     raise OperationFailure(errmsg, code, response, max_wire_version)
-pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: d20badee-7a6f-4d1e-a3be-b37c884faf9f; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: d20badee-7a6f-4d1e-a3be-b37c884faf9f, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
-RequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;
-RequestMethod: POST;
-Header: Authorization Length: 84;
-Header: x-ms-date Length: 29;
-Header: x-ms-cosmos-sdk-supportedcapabilities Length: 1;
-Header: x-ms-activity-id Length: 36;
-Header: Cache-Control Length: 8;
-Header: User-Agent Length: 145;
-Header: x-ms-cosmos-apitype Length: 7;
-Header: x-ms-version Length: 10;
-Header: Accept Length: 16;
-Header: x-ms-cosmos-compute-hop-count Length: 1;
-Header: x-ms-gateway-use-mtls Length: 1;
-Header: traceparent Length: 55;
-Header: tracestate Length: 6;
-, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: d20badee-7a6f-4d1e-a3be-b37c884faf9f; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: d20badee-7a6f-4d1e-a3be-b37c884faf9f, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 84;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:44324 - "GET /api/stats HTTP/1.1" 200 OK
-INFO:     172.20.0.1:57774 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
-INFO:     172.20.0.1:57800 - "POST /api/import-contacts HTTP/1.1" 404 Not Found
-INFO:     172.20.0.1:57770 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 406, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        self.scope, self.receive, self.send
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/fastapi/applications.py", line 1054, in __call__
-    await super().__call__(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/applications.py", line 113, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/errors.py", line 187, in __call__
-    raise exc
-  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/errors.py", line 165, in __call__
-    await self.app(scope, receive, _send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/cors.py", line 93, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/cors.py", line 144, in simple_response
-    await self.app(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
-    raise exc
-  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
-    await app(scope, receive, sender)
-  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 715, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 735, in app
-    await route.handle(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 288, in handle
-    await self.app(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 76, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
-    raise exc
-  File "/usr/local/lib/python3.13/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
-    await app(scope, receive, sender)
-  File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 73, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/fastapi/routing.py", line 301, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<3 lines>...
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/fastapi/routing.py", line 214, in run_endpoint_function
-    return await run_in_threadpool(dependant.call, **values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/starlette/concurrency.py", line 39, in run_in_threadpool
-    return await anyio.to_thread.run_sync(func, *args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/anyio/to_thread.py", line 33, in run_sync
-    return await get_asynclib().run_sync_in_worker_thread(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        func, *args, cancellable=cancellable, limiter=limiter
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 877, in run_sync_in_worker_thread
-    return await future
-           ^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 807, in run
-    result = context.run(func, *args)
-  File "/home/workspace/main.py", line 47, in add_visit
-    res = db[COLLECTION].find_one_and_update(
-        {"name": SITE_KEY},
-    ...<2 lines>...
-        return_document=True
-    )
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3566, in find_one_and_update
-    return self._find_and_modify(
-           ~~~~~~~~~~~~~~~~~~~~~^
-        filter,
-        ^^^^^^^
-    ...<8 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3227, in _find_and_modify
-    return self._database.client._retryable_write(
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        write_concern.acknowledged,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<2 lines>...
-        operation=_Op.FIND_AND_MODIFY,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1898, in _retryable_write
-    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
-           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1784, in _retry_with_session
-    return self._retry_internal(
-           ~~~~~~~~~~~~~~~~~~~~^
-        func=func,
-        ^^^^^^^^^^
-    ...<4 lines>...
-        operation_id=operation_id,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/_csot.py", line 119, in csot_wrapper
-    return func(self, *args, **kwargs)
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1830, in _retry_internal
-    ).run()
-      ~~~^^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2554, in run
-    return self._read() if self._is_read else self._write()
-                                              ~~~~~~~~~~~^^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 2676, in _write
-    return self._func(self._session, conn, self._retryable)  # type: ignore
-           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 3213, in _find_and_modify_helper
-    out = self._command(
-        conn,
-    ...<6 lines>...
-        user_fields=_FIND_AND_MODIFY_DOC_FIELDS,
-    )
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/collection.py", line 621, in _command
-    return conn.command(
-           ~~~~~~~~~~~~^
-        self._database.name,
-        ^^^^^^^^^^^^^^^^^^^^
-    ...<12 lines>...
-        user_fields=user_fields,
-        ^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 45, in inner
-    return func(*args, **kwargs)
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 538, in command
-    return command(
-        self,
-    ...<20 lines>...
-        write_concern=write_concern,
-    )
-  File "/usr/local/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 218, in command
-    helpers_shared._check_command_response(
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        response_doc,
-        ^^^^^^^^^^^^^
-    ...<2 lines>...
-        parse_write_concern_error=parse_write_concern_error,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/usr/local/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 247, in _check_command_response
-    raise OperationFailure(errmsg, code, response, max_wire_version)
-pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: fbd5107d-4838-4df8-9ce8-7154aa4858f8; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: fbd5107d-4838-4df8-9ce8-7154aa4858f8, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
+pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 46593eb5-a770-455e-a186-7bdd4e2d8f75; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: 46593eb5-a770-455e-a186-7bdd4e2d8f75, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
 RequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;
 RequestMethod: POST;
 Header: Authorization Length: 82;
@@ -539,8 +541,8 @@ Header: x-ms-cosmos-compute-hop-count Length: 1;
 Header: x-ms-gateway-use-mtls Length: 1;
 Header: traceparent Length: 55;
 Header: tracestate Length: 6;
-, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: fbd5107d-4838-4df8-9ce8-7154aa4858f8; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: fbd5107d-4838-4df8-9ce8-7154aa4858f8, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 82;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
-INFO:     172.20.0.1:57786 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
+, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 46593eb5-a770-455e-a186-7bdd4e2d8f75; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: 46593eb5-a770-455e-a186-7bdd4e2d8f75, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 82;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
+INFO:     172.20.0.1:54584 - "POST /api/visit HTTP/1.1" 500 Internal Server Error
 ERROR:    Exception in ASGI application
 Traceback (most recent call last):
   File "/usr/local/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 406, in run_asgi
@@ -696,7 +698,7 @@ Traceback (most recent call last):
     ^
   File "/usr/local/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 247, in _check_command_response
     raise OperationFailure(errmsg, code, response, max_wire_version)
-pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 30d1e649-cbe2-4323-be75-a5a6fd62ef11; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: 30d1e649-cbe2-4323-be75-a5a6fd62ef11, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
+pymongo.errors.OperationFailure: Error=13, Details='Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 5095178c-30a7-41c8-9653-f65ddc59476a; Reason: ({"code":"Forbidden","message":"Message: {\"Errors\":[\"Database / Collection Count Quota exceeded: Maximum number of 'Database' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\"]}\r\nActivityId: 5095178c-30a7-41c8-9653-f65ddc59476a, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}
 RequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;
 RequestMethod: POST;
 Header: Authorization Length: 82;
@@ -712,4 +714,5 @@ Header: x-ms-cosmos-compute-hop-count Length: 1;
 Header: x-ms-gateway-use-mtls Length: 1;
 Header: traceparent Length: 55;
 Header: tracestate Length: 6;
-, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 30d1e649-cbe2-4323-be75-a5a6fd62ef11; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: 30d1e649-cbe2-4323-be75-a5a6fd62ef11, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 82;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
+, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);, full error: {'ok': 0.0, 'errmsg': 'Error=13, Details=\'Response status code does not indicate success: Forbidden (403); Substatus: 3090; ActivityId: 5095178c-30a7-41c8-9653-f65ddc59476a; Reason: ({"code":"Forbidden","message":"Message: {\\"Errors\\":[\\"Database / Collection Count Quota exceeded: Maximum number of \'Database\' per account exceeded. Current configured quota 1000. Learn more https://aka.ms/cosmosdbquota\\"]}\\r\\nActivityId: 5095178c-30a7-41c8-9653-f65ddc59476a, Request URI: /apps/14dfba39-4cfb-45be-9085-2849d51e49a6/services/4b30676d-032f-4482-841c-bfe3300b661a/partitions/7c6a25d7-bb0c-434b-9260-f775eda47607/replicas/134052439115800593p, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0"}\r\nRequestUri: https://developer-platform-user-db-31-uksouth.documents.azure.com/dbs;\r\nRequestMethod: POST;\r\nHeader: Authorization Length: 82;\r\nHeader: x-ms-date Length: 29;\r\nHeader: x-ms-cosmos-sdk-supportedcapabilities Length: 1;\r\nHeader: x-ms-activity-id Length: 36;\r\nHeader: Cache-Control Length: 8;\r\nHeader: User-Agent Length: 145;\r\nHeader: x-ms-cosmos-apitype Length: 7;\r\nHeader: x-ms-version Length: 10;\r\nHeader: Accept Length: 16;\r\nHeader: x-ms-cosmos-compute-hop-count Length: 1;\r\nHeader: x-ms-gateway-use-mtls Length: 1;\r\nHeader: traceparent Length: 55;\r\nHeader: tracestate Length: 6;\r\n, Request URI: /dbs, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);', 'code': 13, 'codeName': 'Unauthorized'}
+INFO:     172.20.0.1:41532 - "GET /api/stats HTTP/1.1" 200 OK
